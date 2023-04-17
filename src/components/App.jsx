@@ -23,9 +23,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.contacts);
-    console.log(this.state.contacts);
+  componentDidUpdate(_, prevState) {
     if (prevState !== this.state)
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
   }
@@ -65,10 +63,7 @@ class App extends Component {
       <div className={css.container}>
         <h1 className={css.title}>Phonebook</h1>
 
-        <ContactForm
-          onSubmit={this.handleFormSubmit}
-          contacts={this.state.contacts}
-        />
+        <ContactForm onSubmit={this.handleFormSubmit} />
 
         <h2 className={css.contacts__title}>Contacts</h2>
         <Filter filter={this.state.filter} onFilter={this.handleFilterChange} />
